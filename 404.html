@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toolbox - 404 Not Found</title>
+  <meta id="base-url" name="base-url" content="">
+    <script>
+        // Dynamically set the base URL for GitHub Pages
+        (function() {
+            const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/') + '/';
+            document.getElementById('base-url').setAttribute('content', baseUrl);
+        })();
+
+        // Get the path, and redirect if it's a tool
+        const path = window.location.pathname.split('/').filter(part => part !== '' && part !== 'index.html').join('/'); // Remove leading/trailing slashes
+
+        // Only redirect if the path is not empty, not 'index.html', and does not contain a period
+        if (path) {
+            window.location.replace(baseUrl + 'index.html?tool=' + path);
+        } else {
+            // For the root or other invalid paths, just redirect to the homepage
+            window.location.replace(baseUrl + 'index.html');
+        }
+    </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>
