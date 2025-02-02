@@ -1,0 +1,378 @@
+{
+    "categories": {
+        "Code Formatting and Minification": [
+            {
+                "name": "HTML Beautifier",
+                "url": "html-beautifier",
+                "folderName": "html-beautifier",
+                "description": "Format HTML code to make it more readable.",
+                "keywords": "html, beautifier, formatter, code",
+                "dependencies": []
+            },
+            {
+                "name": "Jekyll Post Formatter",
+                "url": "jekyll-post-formatter",
+                "folderName": "jekyll-post-formatter",
+                "description": "Format HTML code to make it more readable.",
+                "keywords": "html, beautifier, formatter, code",
+                "dependencies": [
+                    "https://unpkg.com/turndown/dist/turndown.js",
+                    "https://unpkg.com/turndown-plugin-gfm/dist/turndown-plugin-gfm.js",
+                    "https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
+                ]
+            },
+            {
+                "name": "CSS Beautifier",
+                "url": "css-beautifier",
+                "folderName": "css-beautifier",
+                "description": "Format CSS code to make it more readable.",
+                "keywords": "css, beautifier, formatter, code",
+                "dependencies": []
+            },
+            {
+                "name": "JavaScript Beautifier",
+                "url": "js-beautifier",
+                "folderName": "js-beautifier",
+                "description": "Format JavaScript code to make it more readable.",
+                "keywords": "javascript, js, beautifier, formatter, code",
+                "dependencies": []
+            },
+            {
+                "name": "JSON Beautifier",
+                "url": "json-beautifier",
+                "folderName": "json-beautifier",
+                "description": "Format JSON data to make it more readable.",
+                "keywords": "json, beautifier, formatter, data",
+                "dependencies": []
+            },
+            {
+                "name": "HTML Minifier",
+                "url": "html-minifier",
+                "folderName": "html-minifier",
+                "description": "Compress HTML code for faster loading.",
+                "keywords": "html, minifier, compressor, code, optimize",
+                "dependencies": []
+            },
+            {
+                "name": "CSS Minifier",
+                "url": "css-minifier",
+                "folderName": "css-minifier",
+                "description": "Compress CSS code for faster loading.",
+                "keywords": "css, minifier, compressor, code, optimize",
+                "dependencies": []
+            },
+            {
+                "name": "JavaScript Minifier",
+                "url": "js-minifier",
+                "folderName": "js-minifier",
+                "description": "Compress JavaScript code for faster loading.",
+                "keywords": "javascript, js, minifier, compressor, code, optimize",
+                "dependencies": []
+            },
+            {
+                "name": "JSON Minifier",
+                "url": "json-minifier",
+                "folderName": "json-minifier",
+                "description": "Compress JSON data for faster loading.",
+                "keywords": "json, minifier, compressor, data, optimize",
+                "dependencies": []
+            },
+            {
+                "name": "SQL Beautifier",
+                "url": "sql-beautifier",
+                "folderName": "sql-beautifier",
+                "description": "Format SQL queries to make them more readable.",
+                "keywords": "sql, beautifier, formatter, query",
+                "dependencies": []
+            }
+        ],
+        "Code Validation": [
+            {
+                "name": "HTML Validator",
+                "url": "html-validator",
+                "folderName": "html-validator",
+                "description": "Check HTML code for syntax errors.",
+                "keywords": "html, validator, syntax, errors, check",
+                "dependencies": []
+            },
+            {
+                "name": "CSS Validator",
+                "url": "css-validator",
+                "folderName": "css-validator",
+                "description": "Check CSS code for syntax errors.",
+                "keywords": "css, validator, syntax, errors, check",
+                "dependencies": []
+            },
+            {
+                "name": "JavaScript Validator",
+                "url": "js-validator",
+                "folderName": "js-validator",
+                "description": "Check JavaScript code for syntax errors.",
+                "keywords": "javascript, js, validator, syntax, errors, check",
+                "dependencies": []
+            },
+            {
+                "name": "JSON Validator",
+                "url": "json-validator",
+                "folderName": "json-validator",
+                "description": "Validate JSON data and highlight errors.",
+                "keywords": "json, validator, syntax, errors, check",
+                "dependencies": []
+            }
+        ],
+        "Text Manipulation": [
+            {
+                "name": "Regular Expression Tester",
+                "url": "regex-tester",
+                "folderName": "regex-tester",
+                "description": "Test regular expressions with highlighting of matches.",
+                "keywords": "regex, regular expression, tester, matches, test",
+                "dependencies": []
+            },
+            {
+                "name": "Case Converter",
+                "url": "case-converter",
+                "folderName": "case-converter",
+                "description": "Convert text between different cases (e.g., uppercase, lowercase).",
+                "keywords": "case converter, uppercase, lowercase, text, convert",
+                "dependencies": []
+            },
+            {
+                "name": "String Utilities",
+                "url": "string-utils",
+                "folderName": "string-utils",
+                "description": "Find and replace, trim whitespace, encode/decode HTML entities, etc.",
+                "keywords": "string utilities, find, replace, trim, encode, decode, HTML entities",
+                "dependencies": []
+            },
+            {
+                "name": "Diff Checker",
+                "url": "diff-checker",
+                "folderName": "diff-checker",
+                "description": "Compare two pieces of text and highlight the differences.",
+                "keywords": "diff checker, compare, text, differences, highlight",
+                "dependencies": []
+            },
+            {
+                "name": "Lorem Ipsum Generator",
+                "url": "lorem-ipsum-generator",
+                "folderName": "lorem-ipsum-generator",
+                "description": "Generate placeholder text for testing layouts.",
+                "keywords": "lorem ipsum, generator, placeholder, text, layout",
+                "dependencies": []
+            }
+        ],
+        "Data Conversion and Encoding": [
+            {
+                "name": "JSON/XML Converter",
+                "url": "json-xml-converter",
+                "folderName": "json-xml-converter",
+                "description": "Convert data between JSON and XML formats.",
+                "keywords": "json, xml, converter, data, format",
+                "dependencies": []
+            },
+            {
+                "name": "CSV/TSV Converter",
+                "url": "csv-tsv-converter",
+                "folderName": "csv-tsv-converter",
+                "description": "Convert data between CSV, TSV, and JSON.",
+                "keywords": "csv, tsv, json, converter, data",
+                "dependencies": []
+            },
+            {
+                "name": "Base64 Encoder/Decoder",
+                "url": "base64-encoder-decoder",
+                "folderName": "base64-encoder-decoder",
+                "description": "Encode and decode data using Base64.",
+                "keywords": "base64, encoder, decoder, data, encode, decode",
+                "dependencies": []
+            },
+            {
+                "name": "URL Encoder/Decoder",
+                "url": "url-encoder-decoder",
+                "folderName": "url-encoder-decoder",
+                "description": "Encode and decode URLs.",
+                "keywords": "url, encoder, decoder, encode, decode",
+                "dependencies": []
+            },
+            {
+                "name": "HTML Entity Encoder/Decoder",
+                "url": "html-entity-encoder-decoder",
+                "folderName": "html-entity-encoder-decoder",
+                "description": "Encode and decode HTML entities.",
+                "keywords": "html, entity, encoder, decoder, encode, decode",
+                "dependencies": []
+            },
+            {
+                "name": "Number Base Converter",
+                "url": "number-base-converter",
+                "folderName": "number-base-converter",
+                "description": "Convert numbers between decimal, binary, octal, and hexadecimal.",
+                "keywords": "number, base, converter, decimal, binary, octal, hexadecimal",
+                "dependencies": []
+            },
+            {
+                "name": "Timestamp Converter",
+                "url": "timestamp-converter",
+                "folderName": "timestamp-converter",
+                "description": "Convert between Unix timestamps and human-readable dates.",
+                "keywords": "timestamp, converter, unix, date, time",
+                "dependencies": []
+            }
+        ],
+        "Network Tools": [
+            {
+                "name": "IP Address Information",
+                "url": "ip-info",
+                "folderName": "ip-info",
+                "description": "Lookup geolocation, ISP, and other information about an IP address.",
+                "keywords": "ip, address, information, geolocation, isp, lookup",
+                "dependencies": []
+            },
+            {
+                "name": "Ping",
+                "url": "ping",
+                "folderName": "ping",
+                "description": "Test the reachability of a host.",
+                "keywords": "ping, host, reachability, test",
+                "dependencies": []
+            },
+            {
+                "name": "DNS Lookup",
+                "url": "dns-lookup",
+                "folderName": "dns-lookup",
+                "description": "Perform DNS lookups (A, MX, NS, TXT, etc.).",
+                "keywords": "dns, lookup, a, mx, ns, txt",
+                "dependencies": []
+            }
+        ],
+        "Security and Cryptography": [
+            {
+                "name": "Hash Generator",
+                "url": "hash-generator",
+                "folderName": "hash-generator",
+                "description": "Calculate various hash values (MD5, SHA-1, SHA-256, SHA-512) of a string.",
+                "keywords": "hash, generator, md5, sha1, sha256, sha512",
+                "dependencies": []
+            },
+            {
+                "name": "Password Generator",
+                "url": "password-generator",
+                "folderName": "password-generator",
+                "description": "Generate strong, random passwords.",
+                "keywords": "password, generator, random, strong, secure",
+                "dependencies": []
+            },
+            {
+                "name": "JWT Decoder",
+                "url": "jwt-decoder",
+                "folderName": "jwt-decoder",
+                "description": "Decode JSON Web Tokens (JWT).",
+                "keywords": "jwt, decoder, json, web, token, decode",
+                "dependencies": []
+            }
+        ],
+        "Images": [
+            {
+                "name": "Image Compressor",
+                "url": "image-compressor",
+                "folderName": "image-compressor",
+                "description": "Compress images (JPEG, PNG, GIF).",
+                "keywords": "image, compressor, jpeg, png, gif, optimize",
+                "dependencies": []
+            },
+            {
+                "name": "Image Converter",
+                "url": "image-converter",
+                "folderName": "image-converter",
+                "description": "Convert images between formats (JPEG, PNG, GIF, WebP, SVG).",
+                "keywords": "image, converter, jpeg, png, gif, webp, svg, format",
+                "dependencies": []
+            },
+            {
+                "name": "Base64 Image Encoder",
+                "url": "base64-image-encoder",
+                "folderName": "base64-image-encoder",
+                "description": "Convert an image to a Base64 data URL.",
+                "keywords": "base64, image, encoder, data, url, convert",
+                "dependencies": []
+            },
+            {
+                "name": "Color Palette Generator",
+                "url": "color-palette-generator",
+                "folderName": "color-palette-generator",
+                "description": "Extract a color palette from an image.",
+                "keywords": "color, palette, generator, image, extract",
+                "dependencies": []
+            }
+        ],
+        "Development Utilities": [
+            {
+                "name": "Code Syntax Highlighter",
+                "url": "code-highlighter",
+                "folderName": "code-highlighter",
+                "description": "Highlight code syntax for various programming languages.",
+                "keywords": "code, syntax, highlighter, programming, languages, highlight",
+                "dependencies": []
+            },
+            {
+                "name": "Git Cheat Sheet",
+                "url": "git-cheat-sheet",
+                "folderName": "git-cheat-sheet",
+                "description": "A quick reference for common Git commands.",
+                "keywords": "git, cheat sheet, commands, reference, version control",
+                "dependencies": []
+            },
+            {
+                "name": "Markdown Editor",
+                "url": "markdown-editor",
+                "folderName": "markdown-editor",
+                "description": "A basic Markdown editor with preview.",
+                "keywords": "markdown, editor, preview, md, text",
+                "dependencies": []
+            },
+            {
+                "name": "Placeholder Image Generator",
+                "url": "placeholder-image-generator",
+                "folderName": "placeholder-image-generator",
+                "description": "Generate placeholder images for development.",
+                "keywords": "placeholder, image, generator, development, dev",
+                "dependencies": []
+            }
+        ],
+        "Other": [
+            {
+                "name": "Unit Converter",
+                "url": "unit-converter",
+                "folderName": "unit-converter",
+                "description": "Convert between various units (length, weight, temperature, volume).",
+                "keywords": "unit, converter, length, weight, temperature, volume, conversion",
+                "dependencies": []
+            },
+            {
+                "name": "Calendar/Date Calculator",
+                "url": "date-calculator",
+                "folderName": "date-calculator",
+                "description": "Perform date calculations.",
+                "keywords": "calendar, date, calculator, time, calculate, calculation",
+                "dependencies": []
+            },
+            {
+                "name": "QR Code Generator",
+                "url": "qr-code-generator",
+                "folderName": "qr-code-generator",
+                "description": "Generate QR codes from text, URLs, etc.",
+                "keywords": "qr, code, generator, text, url, generate",
+                "dependencies": []
+            },
+            {
+                "name": "Cron Expression Parser",
+                "url": "cron-expression-parser",
+                "folderName": "cron-expression-parser",
+                "description": "Create and understand cron expressions.",
+                "keywords": "cron, expression, parser, schedule, job, time",
+                "dependencies": []
+            }
+        ]
+    }
+}
