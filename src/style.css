@@ -1,25 +1,84 @@
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
+    font-family: PT Mono, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-}
 
-h1, h2 {
-    color: #333;
 }
 
 .container {
     width: 80%;
-    margin: auto;
-    overflow: hidden;
+    margin: 20px auto;
     padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#search-bar {
+    width: calc(100% - 22px);
+    padding: .75em;
+    margin-bottom: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.category-block {
+    margin-bottom: 30px;
+}
+
+.category-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.tool-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tool-card {
+    flex: 1 1 250px; /* Adjust base width as needed */
+    min-width: 200px;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background: linear-gradient(135deg, #4A6572, #F9AA33); /* Example gradient */
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tool-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.tool-description {
+    font-size: 14px;
+    color: #eee;
+}
+
+h1, h2 {
+    color: #333;
 }
 
 /* Form Elements */
@@ -36,14 +95,15 @@ textarea {
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: inherit;
 }
 
 textarea {
     resize: vertical; /* Allow vertical resizing */
 }
 
-button {
-    background-color: #5cb85c;
+.container button {
+    background-color: #4e7ddb;
     color: white;
     padding: 10px 20px;
     margin-top: 10px;
@@ -51,10 +111,12 @@ button {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+
 }
 
-button:hover {
-    background-color: #4cae4c;
+.container button:hover {
+    background-color: #3e6dcb;
+
 }
 
 /* Table Styles */
@@ -122,4 +184,49 @@ summary {
     #header-table td input {
         width: calc(100% - 20px); /* Adjust input width on small screens */
     }
+    .tool-card {
+        flex: 1 1 calc(50% - 30px); /* 2 columns on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .tool-card {
+        flex: 1 1 100%; /* 1 column on very small screens */
+    }
+}
+.big-head {
+    margin: 10em 10% 4em;
+    text-align: center;
+
+}
+.big-head h1 {
+    font-size: 4em;
+    color: #3b3b3b;
+    margin: 1em 0;
+    font-family: monospace;
+
+}
+a {
+    text-decoration: none;
+    color: inherit;
+
+}
+.big-head h1 .tb-cl {
+    color: rgb(79, 125, 219);
+
+}
+.support-btn {
+    background-color: rgb(222, 48, 48);
+    padding: 1em 2em;
+    border: 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: .8em;
+    font-weight: bold;
+
+}
+button {
+    border-radius: 3px;
+    cursor: pointer;
+
 }
