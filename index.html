@@ -3,12 +3,34 @@
 <head>
     <title>Toolbox</title>
     <link rel="stylesheet" href="src/style.css">
-    <link rel="stylesheet" href="src/script.js">
+    <meta id="base-url" name="base-url" content="">
+    <script>
+        // Function to dynamically set the base URL
+        (function() {
+            const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/') + '/';
+            document.getElementById('base-url').setAttribute('content', baseUrl);
+        })();
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DCBK623BTR"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DCBK623BTR');
+    </script>
 </head>
 <body>
-    <h1>Toolbox</h1>
-    <ul>
-        <li><a href="tools/jekyll-post-formatter.html">Jekyll Post Generator</a></li>
-        </ul>
+    <div class="big-head">
+        <h1><a href="" id="home-link"><span class="tb-cl">toolbox</span>.mgks.dev</a></h1>
+        <input type="text" id="search-bar" placeholder="Search tools...">
+        <a href=""><button class="support-btn">SUPPORT THE PROJECT</button></a>
+    </div>
+    <div class="container">
+        <div id="categories-container"></div>
+        <div id="tool-content" style="display:none;"></div>
+        <button id="back-button" style="display:none;">← Back to Home</button>
+    </div>
+    <script src="src/script.js"></script>
+    <script src="sw.js"></script>
 </body>
 </html>
