@@ -1,0 +1,47 @@
+<div class="container">
+    <h1>Jekyll Post Formatter</h1>
+    <details id="header-config">
+        <summary>Post Headers</summary>
+        <table id="header-table">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="add-text">Add Text</button>
+        <button id="add-date">Add Date</button>
+        <button id="add-color">Add Color</button>
+        <button id="save-header">Save Header</button>
+        <button id="reset-header">Reset to default</button>
+    </details>
+
+    <div>
+        <h2>Post Content</h2>
+        <textarea
+            id="content-input"
+            placeholder="Paste your content here..."
+            rows="15"
+        ></textarea>
+    </div>
+
+    <div>
+        <h2>Formatted Output</h2>
+        <textarea id="markdown-output" rows="15" readonly></textarea>
+        <label for="filename-input">Filename:</label>
+        <input type="text" id="filename-input" value="default-filename.md">
+        <button id="copy-button">Copy to Clipboard</button>
+        <button id="download-button">Download Markdown File</button>
+    </div>
+
+    <div>
+        <h2>Preview</h2>
+        <div id="markdown-preview">
+            <code id="preview-header"></code>
+            <div id="preview-content"></div>
+        </div>
+    </div>
+</div>
