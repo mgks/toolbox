@@ -5,18 +5,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const backButton = document.getElementById('back-button');
     const baseUrl = document.querySelector('meta[name="base-url"]').getAttribute('content');
     const homeLink = document.getElementById('home-link');
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
 
-    // Fetch the apps.json file
+    // Fetch the apps.json file using the dynamically set base URL
     fetch(`${baseUrl}apps.json`)
         .then(response => response.json())
         .then(appsData => {
             // Store appsData in localStorage
             localStorage.setItem('appsData', JSON.stringify(appsData));
 
+            // Populate the sidebar with tools
+            populateSidebar(appsData);
+
             // Handle routing based on URL
             handleRouting(appsData);
 
-            // Add event listener for search bar
             searchBar.addEventListener('input', () => {
                 const searchTerm = searchBar.value.toLowerCase();
                 const filteredCategories = filterCategories(searchTerm, appsData);
@@ -26,6 +31,43 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Error fetching or parsing apps.json:', error);
         });
+
+    // Toggle sidebar visibility
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('show');
+        mainContent.classList.toggle('sidebar-open');
+        menuToggle.classList.toggle('show');
+    });
+
+    // Add event listener to the back button
+    backButton.addEventListener('click', () => {
+        const appsData = JSON.parse(localStorage.getItem('appsData'));
+        if (appsData) {
+            window.history.pushState({ isHomePage: true }, '', baseUrl);
+            showHomePage();
+            displayCategories(appsData.categories);
+            document.body.classList.remove('tool-page');
+        }
+    });
+
+    homeLink.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default link behavior
+        window.history.pushState({ isHomePage: true }, '', baseUrl);
+        const appsData = JSON.parse(localStorage.getItem('appsData'));
+        if (appsData) {
+            showHomePage();
+            displayCategories(appsData.categories);
+        }
+        document.body.classList.remove('tool-page');
+    });
+
+    // Listen for popstate event to handle browser back/forward navigation
+    window.addEventListener('popstate', (event) => {
+        const appsData = JSON.parse(localStorage.getItem('appsData'));
+        if (appsData) {
+            handleRouting(appsData);
+        }
+    });
 
     function handleRouting(appsData) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -43,15 +85,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showToolPage() {
+        document.body.classList.add('tool-page');
         categoriesContainer.style.display = 'none';
         toolContent.style.display = 'block';
         backButton.style.display = 'block';
         document.querySelector('.big-head').classList.add('small-head');
         document.querySelector('.big-head').classList.remove('big-head');
         searchBar.style.display = 'none'; // Hide the search bar
+        menuToggle.classList.add('show');
     }
-
+    
     function showHomePage() {
+        document.body.classList.remove('tool-page');
         categoriesContainer.style.display = 'block';
         toolContent.style.display = 'none';
         backButton.style.display = 'none';
@@ -61,25 +106,64 @@ document.addEventListener('DOMContentLoaded', () => {
             bigHeadElem.classList.remove('small-head');
         }
         searchBar.style.display = 'block'; // Show the search bar
+        sidebar.classList.remove('show');
+        if (window.innerWidth <= 768) { // Check if it's a mobile screen
+            menuToggle.classList.remove('show');
+        }
     }
 
-    // Add event listener to the back button
-    backButton.addEventListener('click', () => {
-        const appsData = JSON.parse(localStorage.getItem('appsData'));
-        if (appsData) {
-            showHomePage();
-            displayCategories(appsData.categories);
+    function populateSidebar(appsData) {
+        const sidebarMenu = document.getElementById('sidebar-menu');
+        sidebarMenu.innerHTML = ''; // Clear existing menu items
+    
+        const categoryColors = {
+            "Code Formatting and Minification": "#3498db",
+            "Code Validation": "#2ecc71",
+            "Text Manipulation": "#f39c12",
+            "Data Conversion and Encoding": "#9b59b6",
+            "Network Tools": "#e74c3c",
+            "Security and Cryptography": "#34495e",
+            "Images": "#1abc9c",
+            "Development Utilities": "#e67e22",
+            "Other": "#7f8c8d"
+        };
+    
+        for (const categoryName in appsData.categories) {
+            const category = appsData.categories[categoryName];
+    
+            const categoryItem = document.createElement('li');
+            categoryItem.classList.add('sidebar-category-title');
+            categoryItem.textContent = categoryName;
+            sidebarMenu.appendChild(categoryItem);
+    
+            const subList = document.createElement('ul');
+            subList.classList.add('sub-list');
+            categoryItem.addEventListener('click', function(event) {
+                event.stopPropagation();
+                // const isVisible = subList.style.display !== 'none';
+                // subList.style.display = isVisible ? 'none' : 'block';
+            
+                // Remove 'active' class from all category items
+                document.querySelectorAll('.sidebar-category-title').forEach(cat => {
+                    if (cat !== categoryItem) {
+                        cat.classList.remove('active');
+                        // Also hide their sub-lists
+                        //cat.nextElementSibling.style.display = 'none';
+                    }
+                });
+            
+                // Toggle 'active' class on the clicked category item
+                categoryItem.classList.toggle('active', !isVisible);
+            });
+    
+            const baseColor = categoryColors[categoryName] || "#7f8c8d";
+            const toolListItems = createToolListItems(category, baseColor);
+            subList.appendChild(toolListItems);
+    
+            sidebarMenu.appendChild(categoryItem);
+            sidebarMenu.appendChild(subList);
         }
-    });
-
-    homeLink.addEventListener('click', (event) => {
-        event.preventDefault();
-        const appsData = JSON.parse(localStorage.getItem('appsData'));
-        if (appsData) {
-            showHomePage();
-            displayCategories(appsData.categories);
-        }
-    });
+    }
 
     function loadTool(toolName, appsData) {
         const tool = findTool(toolName, appsData);
@@ -121,7 +205,20 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.text())
             .then(html => {
                 toolContent.innerHTML = html;
-                loadScripts(tool);
+                // Load dependencies from apps.json (if any) first
+                if (tool.dependencies && Array.isArray(tool.dependencies)) {
+                    tool.dependencies.forEach(dependencyUrl => {
+                        const script = document.createElement('script');
+                        script.src = dependencyUrl;
+                        script.async = false; // Ensure scripts are executed in order
+                        document.body.appendChild(script);
+                    });
+                }
+                // Load the tool-specific script
+                const toolScript = document.createElement('script');
+                toolScript.src = `${baseUrl}tools/${tool.folderName}/script.js`;
+                toolScript.async = false; // Ensure tool script executes after dependencies
+                document.body.appendChild(toolScript);
             })
             .catch(error => {
                 console.error(`Error loading tool HTML: ${error}`);
@@ -129,41 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    function loadScripts(tool) {
-        // Function to load script sequentially
-        function loadScript(url, callback) {
-            const script = document.createElement('script');
-            script.src = url;
-            script.async = false; // Scripts are loaded and executed in order
-            script.onload = callback; // Call the callback function when the script is loaded
-            document.body.appendChild(script);
-        }
-    
-        // Check if the tool has dependencies
-        if (tool.dependencies && Array.isArray(tool.dependencies)) {
-            // Load all dependencies first using recursion
-            function loadDependenciesRecursively(index) {
-                if (index < tool.dependencies.length) {
-                    loadScript(tool.dependencies[index], () => {
-                        loadDependenciesRecursively(index + 1);
-                    });
-                } else {
-                    // All dependencies are loaded, now load the tool script
-                    loadScript(`${baseUrl}tools/${tool.folderName}/script.js`, () => {
-                        console.log(`Script for ${tool.name} loaded successfully.`);
-                    });
-                }
-            }
-            loadDependenciesRecursively(0);
-        } else {
-            // No dependencies, just load the tool script
-            loadScript(`${baseUrl}tools/${tool.folderName}/script.js`, () => {
-                console.log(`Script for ${tool.name} loaded successfully.`);
-            });
-        }
-    }
-
-    // Updated display categories to handle tools
+    // updated display categories to match href as well
     function displayCategories(categories) {
         categoriesContainer.innerHTML = '';
 
@@ -189,6 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const category = categories[categoryName];
                 const categoryBlock = document.createElement('div');
                 categoryBlock.classList.add('category-block');
+                categoryBlock.id = categoryName.toLowerCase().replace(/\s+/g, '-');
 
                 const categoryTitle = document.createElement('h2');
                 categoryTitle.classList.add('category-title');
@@ -200,28 +264,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const baseColor = categoryColors[categoryName] || "#7f8c8d";
 
-                for (const tool of category) {
-                    const toolCard = document.createElement('a');
-                    toolCard.classList.add('tool-card');
-                    // Use query parameter for local development and clean URL for GitHub Pages
-                    const toolUrl = `/?tool=${tool.folderName}`;
-                    toolCard.href = toolUrl;
-
-                    const gradient = `linear-gradient(135deg, ${baseColor}, ${lightenColor(baseColor, 10)})`;
-                    toolCard.style.background = gradient;
-
-                    const toolName = document.createElement('div');
-                    toolName.classList.add('tool-name');
-                    toolName.textContent = tool.name;
-                    toolCard.appendChild(toolName);
-
-                    const toolDescription = document.createElement('div');
-                    toolDescription.classList.add('tool-description');
-                    toolDescription.textContent = tool.description;
-                    toolCard.appendChild(toolDescription);
-
-                    toolList.appendChild(toolCard);
-                }
+                const toolListItems = createToolListItems(category, baseColor);
+                toolList.appendChild(toolListItems);
 
                 categoryBlock.appendChild(toolList);
                 categoriesContainer.appendChild(categoryBlock);
@@ -247,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return tool.name.toLowerCase().includes(searchTerm) ||
                     tool.description.toLowerCase().includes(searchTerm);
             });
-    
+        
             if (filteredTools.length > 0) {
                 filteredCategories[categoryName] = filteredTools;
             }
@@ -267,6 +311,39 @@ document.addEventListener('DOMContentLoaded', () => {
         return null;
     }
 
+    // Function to create tool list items for both the sidebar and homepage
+    function createToolListItems(category, baseColor) {
+        const fragment = document.createDocumentFragment();
+        category.forEach(tool => {
+            const toolCard = document.createElement('a');
+            toolCard.classList.add('tool-card');
+            toolCard.href = `/?tool=${tool.folderName}`;
+            toolCard.style.background = `linear-gradient(135deg, ${baseColor}, ${lightenColor(baseColor, 10)})`;
+
+            const toolName = document.createElement('div');
+            toolName.classList.add('tool-name');
+            toolName.textContent = tool.name;
+
+            const toolDescription = document.createElement('div');
+            toolDescription.classList.add('tool-description');
+            toolDescription.textContent = tool.description;
+
+            toolCard.appendChild(toolName);
+            toolCard.appendChild(toolDescription);
+
+            // Add click event listener to each tool card
+            toolCard.addEventListener('click', (event) => {
+                event.preventDefault();
+                const appsData = JSON.parse(localStorage.getItem('appsData'));
+                loadTool(tool.folderName, appsData);
+                showToolPage();
+            });
+
+            fragment.appendChild(toolCard);
+        });
+        return fragment;
+    }
+
     // Service Worker Registration (for offline support)
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
@@ -278,17 +355,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
-
-    // Listen for popstate event to handle browser back/forward navigation
-    window.addEventListener('popstate', (event) => {
-        const appsData = JSON.parse(localStorage.getItem('appsData'));
-        if (appsData) {
-            if (event.state && event.state.tool) {
-                loadTool(event.state.tool, appsData);
-            } else {
-                // Handle as a regular navigation
-                handleRouting(appsData);
-            }
-        }
-    });
 });
