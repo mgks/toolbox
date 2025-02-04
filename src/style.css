@@ -1,17 +1,25 @@
 /* General Styles */
 body {
-    font-family: PT Mono, sans-serif;
+    font-family: 'PT Mono', sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     padding: 0;
-
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
 }
 
+/* Main content container */
 .container {
-    width: 80%;
+    width: 75%;
     margin: 20px auto;
     padding: 20px;
-
+    background: none;
+    box-shadow: none;
+    animation: none;
 }
 
 h1 {
@@ -21,7 +29,7 @@ h1 {
 }
 
 #search-bar {
-    width: calc(100% - 22px);
+    width: 400px;
     padding: .75em;
     margin-bottom: 1em;
     border: 1px solid #ddd;
@@ -48,8 +56,9 @@ h1 {
     gap: 15px;
 }
 
+/* Styling for tool cards */
 .tool-card {
-    flex: 1 1 250px; /* Adjust base width as needed */
+    flex: 1 1 250px;
     min-width: 200px;
     padding: 20px;
     border: none;
@@ -58,7 +67,7 @@ h1 {
     color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    background: linear-gradient(135deg, #4A6572, #F9AA33); /* Example gradient */
+
 }
 
 .tool-card:hover {
@@ -111,12 +120,10 @@ textarea {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
 }
 
 .container button:hover {
     background-color: #3e6dcb;
-
 }
 
 /* Table Styles */
@@ -175,46 +182,28 @@ summary {
     box-sizing: border-box;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-    }
-
-    #header-table td input {
-        width: calc(100% - 20px); /* Adjust input width on small screens */
-    }
-    .tool-card {
-        flex: 1 1 calc(50% - 30px); /* 2 columns on smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .tool-card {
-        flex: 1 1 100%; /* 1 column on very small screens */
-    }
-}
 .big-head {
-    margin: 10em 10% 4em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 8em 5% 4em;
     text-align: center;
-
+    gap: 2em;
 }
+
 .big-head h1 {
-    font-size: 4em;
+    font-size: 3em;
     color: #3b3b3b;
-    margin: 1em 0;
+    margin: 0;
     font-family: monospace;
-
+    white-space: nowrap;
 }
+
 a {
     text-decoration: none;
     color: inherit;
-
 }
-.big-head h1 .tb-cl {
-    color: rgb(79, 125, 219);
 
-}
 .support-btn {
     background-color: rgb(222, 48, 48);
     padding: 1em 2em;
@@ -223,10 +212,292 @@ a {
     font-family: inherit;
     font-size: .8em;
     font-weight: bold;
-
 }
+
+/* Styling for animated text color */
+.tb-cl {
+    background-image: linear-gradient(45deg, #4e7ddb, #3498db, #2ecc71, #f39c12, #9b59b6, #e74c3c);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientAnimation 5s ease-in-out infinite alternate;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
 button {
     border-radius: 3px;
     cursor: pointer;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    /* left: -300px; */
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 70px 20px 20px 20px;
+    overflow-y: auto;
+    transition: left 0.3s ease-in-out;
+    z-index: 10;
+
+}
+
+.sidebar.show {
+    left: 0; /* Slide in from the left */
+}
+
+/* Sidebar Menu Styles */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+}
+
+.sidebar li {
+    margin-bottom: 5px;
+}
+
+/* Sidebar title styling */
+.sidebar-title {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    color: #3b3b3b;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 10px 0;
+    display: block;
+    z-index: 20;
+}
+
+.sidebar-category-title {
+    font-weight: bold;
+    user-select: none;
+    margin-top: 15px;
+    font-size: 19px;
+    color: #34495e;
+}
+
+.sidebar-tool-item a {
+    text-decoration: none;
+    background: none;
+    box-shadow: none;
+    color: inherit;
+    width: fit-content;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+}
+
+/* Tool Item Styles */
+.sidebar-tool-item .sidebar-nav-link {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 4px;
+    display: block;
+}
+
+.sidebar-tool-item {
+    padding-left: 20px;
+    width: 90%;
+}
+
+.sidebar-nav-link:hover{
+    text-decoration: underline;
+}
+
+/* Initially hide sub-lists */
+.sidebar .sub-list {
+    display: inline-grid;
+    padding-left: 0px;
+
+}
+
+/* Style for the active/open category */
+.sidebar .active > .sub-list {
+    display: block; /* Show the sub-list of the active category */
+}
+
+/* Menu Toggle Button */
+#menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    z-index: 40;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 24px;
+    cursor: pointer;
+    transition: left 0.3s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+/* Position adjustment for tool-page class */
+.tool-page #menu-toggle{
+    left: 30px;
+    opacity: 1;
+}
+
+/* Styling for the hamburger icon */
+#menu-toggle .bar1,
+#menu-toggle .bar2,
+#menu-toggle .bar3 {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* Animate Menu Icon for Cross Effect */
+#menu-toggle.show .bar1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+#menu-toggle.show .bar2 {
+    opacity: 0;
+}
+
+#menu-toggle.show .bar3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+#menu-toggle:hover {
+    background-color: transparent;
+}
+
+/* Adjust header and content for small-head */
+.small-head {
+    background: none;
+    border-radius: 5px;
+    box-shadow: none;
+    padding-bottom: 1.5em;
+    margin: 3em 5% 1em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.small-head #search-bar{
+    display: none;
+}
+
+.small-head .support-btn {
+    display: none;
+}
+
+.small-head h1 {
+    margin: 1em 0 0 0;
+}
+
+.main-content {
+    margin-left: 0;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* Adjust content when sidebar is open */
+.main-content.sidebar-open {
+    margin-left: 300px; /* Match sidebar width */
+}
+
+/* Make main content take full width on tool page display*/
+.tool-page .main-content {
+    margin-left: 300px; /* Adjust this value to match the sidebar's width */
+    width: calc(100% - 300px);
+}
+
+.home-page .main-content{
+    margin-left: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: 10px auto;
+    }
+    .main-content.sidebar-open {
+        margin-left: 100%;
+        width: auto;
+    }
+    .content{
+        margin: 0;
+    }
+    #header-table td input {
+        width: calc(100% - 20px); /* Adjust input width on small screens */
+    }
+    .tool-card {
+        flex: 1 1 calc(50% - 30px); /* 2 columns on smaller screens */
+    }
+
+    .sidebar {
+        width: 100%; /* Full width on small screens */
+        left: -100%; /* Adjust initial position for full width */
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+    .main-content {
+        width: 100vw;
+        margin-left: -100vw; /* No margin on small screens */
+    }
+
+    .big-head, .small-head{
+        margin: 1em;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .big-head h1, .small-head h1{
+        font-size: 1.5em;
+    }
+    .small-head{
+        margin: 1em;
+    }
+    #search-bar{
+        width: 80%;
+    }
+    #menu-toggle {
+        display: block; /* Show on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .tool-card {
+        flex: 1 1 100%; /* 1 column on very small screens */
+    }
+    .main-content.sidebar-open {
+        margin-left: 100%;
+    }
+    .tool-page .main-content {
+        width: 0%;
+    }
+    .big-head {
+        margin: 5em 5% 4em;
+        gap: 1em;
+    }
+}
+.sub-list .tool-card {
+    margin: .5em 0;
 
 }
