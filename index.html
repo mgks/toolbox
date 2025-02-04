@@ -20,15 +20,26 @@
     </script>
 </head>
 <body>
-    <div class="big-head">
-        <h1><a href="" id="home-link"><span class="tb-cl">toolbox</span>.mgks.dev</a></h1>
-        <input type="text" id="search-bar" placeholder="Search tools...">
-        <a href=""><button class="support-btn">SUPPORT THE PROJECT</button></a>
+    <div class="sidebar">
+        <h2 id="sidebar-title">Tools List</h2>
+        <ul id="sidebar-menu"></ul>
     </div>
-    <div class="container">
-        <div id="categories-container"></div>
-        <div id="tool-content" style="display:none;"></div>
-        <button id="back-button" style="display:none;">← Back to Home</button>
+    <button id="menu-toggle" aria-label="Toggle Menu">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </button>
+    <div class="main-content">
+        <div class="big-head">
+            <h1><a href="" id="home-link"><span class="tb-cl">toolbox</span>.mgks.dev</a></h1>
+            <input type="text" id="search-bar" placeholder="Search tools...">
+            <a href=""><button class="support-btn">SUPPORT THE PROJECT</button></a>
+        </div>
+        <div class="container">
+            <div id="categories-container"></div>
+            <div id="tool-content" style="display:none;"></div>
+            <button id="back-button" style="display:none;">← Back to Home</button>
+        </div>
     </div>
     <script src="src/script.js"></script>
     <script src="sw.js"></script>
