@@ -10,7 +10,8 @@ toolbox/
 ├── index.html                      (front page, search option for tools)
 ├── apps.json                       (list of all the apps in production)
 ├── sw.js                           (service workers config)
-├── README.md                       (this file)
+├── 404.html                        (error handling)
+├── README.md
 ├── src/
 │   ├── style.css                   (default stylesheet for toolbox)
 │   └── script.js                   (general website script for actions, search, transitions, etc.)
