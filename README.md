@@ -1,9 +1,6 @@
 # toolbox
 Toolbox is a collection of handy web-based tools designed to simplify everyday tasks for developers. Built with HTML, CSS, and JavaScript, this offline-capable suite provides utilities for code formatting, text manipulation, data conversion, and more. From beautifying JSON to generating strong passwords, Toolbox aims to be a one-stop shop for common developer needs, accessible anytime, anywhere, even without an internet connection.
 
-# apps
-
-
 ## toolbox structure
 ```bash
 toolbox/
@@ -30,3 +27,5 @@ toolbox/
     │   └── script.js
     └── ... (other tools)
 ```
+
+# apps
